@@ -44,7 +44,7 @@
                               });
                               return;
                           } else {
-                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>');
+                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>');
                               $window.FB.XFBML.parse(element.parent()[0]);
                           }
                       }
