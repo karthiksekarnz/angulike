@@ -1,5 +1,5 @@
 ﻿/**
- * AngularJS directives for social sharing buttons - Facebook Like, Google+, Twitter and Pinterest 
+ * AngularJS directives for social sharing buttons - Facebook Like, Google+, Twitter and Pinterest
  * @author Jason Watmore <jason@pointblankdevelopment.com.au> (http://jasonwatmore.com)
  * @version 1.2.0
  */
@@ -20,7 +20,7 @@
                               $window.FB.init({
                                   appId: $rootScope.facebookAppId,
                                   xfbml: true,
-                                  version: 'v2.3'
+                                  version: 'v2.7'
                               });
                               renderLikeButton();
                           });
@@ -36,15 +36,19 @@
                               var unbindWatch = scope.$watch('fbLike', function (newValue, oldValue) {
                                   if (newValue) {
                                       renderLikeButton();
-                                      
+
                                       // only need to run once
                                       unbindWatch();
                                   }
-                                  
+
                               });
                               return;
                           } else {
-                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>');
+                              if (!attrs.buttonType) {
+                                  attrs.buttonType = 'button';
+                              }
+
+                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="{{attrs.buttonType}}" data-action="like" data-show-faces="false" data-share="false"></div>');
                               $window.FB.XFBML.parse(element.parent()[0]);
                           }
                       }
@@ -122,7 +126,7 @@
                               var unbindWatch = scope.$watch('tweet', function (newValue, oldValue) {
                                   if (newValue) {
                                       renderTweetButton();
-                                  
+
                                       // only need to run once
                                       unbindWatch();
                                   }
@@ -178,7 +182,7 @@
                               var unbindWatch = scope.$watch('pinIt', function (newValue, oldValue) {
                                   if (newValue) {
                                       renderPinItButton();
-                                      
+
                                       // only need to run once
                                       unbindWatch();
                                   }
