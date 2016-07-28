@@ -44,11 +44,7 @@
                               });
                               return;
                           } else {
-                              if (!attrs.buttonType) {
-                                  attrs.buttonType = 'button';
-                              }
-
-                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="{{attrs.buttonType}}" data-action="like" data-show-faces="false" data-share="false"></div>');
+                              element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="'+(scope.buttonType ? scope.buttonType : 'button')+'" data-action="like" data-show-faces="false" data-share="false"></div>');
                               $window.FB.XFBML.parse(element.parent()[0]);
                           }
                       }
